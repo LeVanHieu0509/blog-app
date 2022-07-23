@@ -1,6 +1,5 @@
 const router = require('express').Router();
-const User = require('../models/User');
-const ApiController = require('../src/app/controllers/ApiController');
+const ApiController = require('../app/controllers/ApiController');
 
 //Regiter
 router.post('/register', ApiController.register);
