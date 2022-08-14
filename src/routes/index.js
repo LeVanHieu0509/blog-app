@@ -1,10 +1,8 @@
 const authRouter = require('./auth');
+const postsRouter = require('./posts');
 
 function route(app) {
-    // app.use('/', (req, res) => {
-    //     console.log('test server');
-    // });
-
+    app.use('/posts', postsRouter);
     app.use('/api', authRouter);
 }
 module.exports = route;
