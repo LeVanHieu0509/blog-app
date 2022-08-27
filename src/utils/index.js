@@ -208,4 +208,55 @@ function heapSort(arr) {
     return arr;
 }
 
-module.exports = { swap, bblSort, insertionSort, quickSort, quickSortDev, mergeSort, heapSort };
+//Radix sort (Bắt đầu từ hàng đơn vị)
+
+const getNum = (num, index) => {
+    const strNum = String(num);
+    let end = strNum.length - 1;
+    const foundNum = strNum[end - index];
+
+    if (foundNum === undefined) return 0;
+    else return foundNum;
+};
+
+function largestNum(arr) {
+    let largest = '0';
+
+    arr.forEach((num) => {
+        const strNum = String(num);
+
+        if (strNum.length > largest.length) largest = strNum;
+    });
+
+    return largest.length;
+}
+
+function RadixSort(arr) {
+    //Vị trí max trong từng con số của mảng (Ví dụ 3240 = 4, 345 = 3)
+    let maxLength = largestNum(arr);
+
+    //Không gian 2 chiều mỗi vòng lặp i sẽ tương ứng với 1 array được tạo ra, array được tạo ra là buckets có độ dài là 10
+    for (let i = 0; i < maxLength; i++) {
+        //Mỗi element như là một arr có 10 phần tử
+        let buckets = Array.from({ length: 10 }, () => []);
+
+        //loop qua arr ban đầu
+        for (let j = 0; j < arr.length; j++) {
+            //Tìm vị trí mà match với arr[j] nếu có thì sẽ được push vào buckets
+            //Từng element của arr sẽ tương ứng với từng vị trí của buckets[num]
+            let num = getNum(arr[j], i);
+            //Ở index thứ num của buckets là một mảng
+            //sẽ push những phần từ arr[j] vào mảng buckets tại vị trí buckets[num]
+            if (num !== undefined) buckets[num].push(arr[j]);
+
+            //Lặp qua tất cả các phần tử arr thì mỗi phần từ arr sẽ vào với đúng vị trí của buckets
+        }
+
+        //Sau khi có buckets rồi thì làm phẳng lại thành 1 mảng mới
+        arr = buckets.flat();
+    }
+    //Chạy hết tất cả thì sẽ return ra mảng cuối cùng
+    return arr;
+}
+
+module.exports = { swap, bblSort, insertionSort, quickSort, quickSortDev, mergeSort, heapSort, RadixSort };

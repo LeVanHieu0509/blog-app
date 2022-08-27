@@ -8,6 +8,7 @@ router.use('/insertionSort', ThuatToanController.insertionSort);
 router.use('/quickSort', ThuatToanController.quickSort);
 router.use('/mergeSort', ThuatToanController.mergeSort);
 router.use('/heapSort', ThuatToanController.heapSort);
+router.use('/radixSort', ThuatToanController.radixSort);
 
 router.use('/', ThuatToanController.index);
 

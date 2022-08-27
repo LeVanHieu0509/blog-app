@@ -1,5 +1,14 @@
 const Post = require('../../models/Post');
-const { swap, bblSort, insertionSort, quickSort, quickSortDev, mergeSort, heapSort } = require('../../utils');
+const {
+    swap,
+    bblSort,
+    insertionSort,
+    quickSort,
+    quickSortDev,
+    mergeSort,
+    heapSort,
+    RadixSort,
+} = require('../../utils');
 
 class ThuatToanController {
     //[[Get] /
@@ -54,6 +63,12 @@ class ThuatToanController {
 
         let result = heapSort(arr);
         res.status(200).json({ heapSort: result });
+    }
+    radixSort(req, res, next) {
+        var arr = [234, 43, 55, 63, 5, 6, 235, 547];
+
+        let result = RadixSort(arr);
+        res.status(200).json({ radixSort: result });
     }
 
     index(req, res, next) {
